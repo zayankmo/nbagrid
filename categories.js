@@ -1,5 +1,12 @@
-class Team {
+class Categories {
+    constructor() {
+
+    }
+}
+
+class Team extends Categories{
     constructor(abbrev, image, other_nicknames=[]) {
+        super();
         this.abbrev = abbrev;
         this.image = image;
         this.other_nicknames = other_nicknames;
@@ -18,6 +25,8 @@ const dallasMavericks = new Team("DAL", "category_images/DAL.svg");
 const denverNuggets = new Team("DEN", "category_images/DEN.svg");
 const detroitPistons = new Team("DET", "category_images/DET.svg");
 const goldenStateWarriors = new Team("GSW", "category_images/GSW.svg");
+const houstonRockets = new Team("HOU", "category_images/HOU.svg");
+const indianaPacers = new Team("IND", "category_images/IND.svg");
 const losAngelesClippers = new Team("LAC", "category_images/LAC.svg");
 const losAngelesLakers = new Team("LAL", "category_images/LAL.svg");
 const memphisGrizzlies = new Team("MEM", "category_images/MEM.svg", ["VAN"]);
@@ -40,9 +49,10 @@ const washingtonWizards = new Team("WAS", "category_images/WAS.svg", ["WSB"]);
 
 // adding to array so we can use randomly select
 let categories = [atlantaHawks, brooklynNets, bostonCeltics, charlotteHornets, chicagoBulls,
-    clevelandCavaliers, dallasMavericks, denverNuggets, detroitPistons, goldenStateWarriors, losAngelesClippers,
-    losAngelesLakers, memphisGrizzlies, miamiHeat, milwaukeeBucks, minnesotaTimberwolves, newOrleansPelicans,
-    newYorkKnicks, oklahomaCityThunder, orlandoMagic, philadelphia76ers, phoenixSuns, portlandTrailBlazers,
+    clevelandCavaliers, dallasMavericks, denverNuggets, detroitPistons, goldenStateWarriors,
+    houstonRockets, indianaPacers, losAngelesClippers, losAngelesLakers, memphisGrizzlies,
+    miamiHeat, milwaukeeBucks, minnesotaTimberwolves, newOrleansPelicans, newYorkKnicks,
+    oklahomaCityThunder, orlandoMagic, philadelphia76ers, phoenixSuns, portlandTrailBlazers,
     sacramentoKings, sanAntonioSpurs, torontoRaptors, utahJazz, washingtonWizards]
 
 // testing
@@ -52,9 +62,26 @@ const col3 = document.getElementById("col-3");
 const row1 = document.getElementById("row-1");
 const row2 = document.getElementById("row-2");
 const row3 = document.getElementById("row-3");
+const topleft = document.getElementById("top-left");
 const newBoard = document.getElementById("new-board");
 //col1.innerHTML = `<img src="${losAngelesLakers.image}"/>`;
 
+function myRandomInts(max){
+    const arr = []
+    while(arr.length < 6){
+        let candidateInt = Math.floor(Math.random() * max)
+        if(arr.indexOf(candidateInt) === -1) arr.push(candidateInt)
+    }
+    return(arr)
+}
+
 newBoard.addEventListener("click", function() {
-    col1.innerHTML = `<img src="${losAngelesLakers.image}"/>`;
+    let randomCategories= myRandomInts(30);
+    topleft.innerHTML = randomCategories;
+    col1.innerHTML = `<img src="${categories[randomCategories[0]].image}"/>`;
+    col2.innerHTML = `<img src="${categories[randomCategories[1]].image}"/>`;
+    col3.innerHTML = `<img src="${categories[randomCategories[2]].image}"/>`;
+    row1.innerHTML = `<img src="${categories[randomCategories[3]].image}"/>`;
+    row2.innerHTML = `<img src="${categories[randomCategories[4]].image}"/>`;
+    row3.innerHTML = `<img src="${categories[randomCategories[5]].image}"/>`;
 })
