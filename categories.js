@@ -75,13 +75,12 @@ function myRandomInts(max){
     return(arr)
 }
 
-newBoard.addEventListener("click", function() {
+function generateBoard() {
     let randomCategories= myRandomInts(30);
-    topleft.innerHTML = randomCategories;
     col1.innerHTML = `<img src="${categories[randomCategories[0]].image}"/>`;
     col2.innerHTML = `<img src="${categories[randomCategories[1]].image}"/>`;
     col3.innerHTML = `<img src="${categories[randomCategories[2]].image}"/>`;
     row1.innerHTML = `<img src="${categories[randomCategories[3]].image}"/>`;
     row2.innerHTML = `<img src="${categories[randomCategories[4]].image}"/>`;
     row3.innerHTML = `<img src="${categories[randomCategories[5]].image}"/>`;
-})
+}
